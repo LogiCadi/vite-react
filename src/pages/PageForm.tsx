@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { countStore } from "../stores";
 
-function A() {
+function PageForm() {
   const [count, setCount] = useRecoilState(countStore);
 
   return (
@@ -13,4 +13,4 @@ function A() {
   );
 }
 
-export default A;
+export default PageForm;

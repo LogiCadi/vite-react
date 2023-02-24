@@ -1,13 +1,25 @@
 import { atom } from "recoil";
+import B from "../../pages/B";
+import PageForm from "../../pages/PageForm";
+
+/** 菜单路径 */
+export const menuRoutes = [
+  {
+    name: "表单",
+    path: "/page-form",
+    element: <PageForm />,
+  },
+  {
+    name: "B",
+    path: "/B",
+    element: <B />,
+  },
+];
 
 export const menuStore = atom({
   key: "menu",
   default: {
-    list: [
-      { name: "A页面", path: "/A" },
-      { name: "B页面", path: "/B" },
-      { name: "C页面", path: "/C" },
-    ],
-    activePath: "/A",
+    list: menuRoutes,
+    activePath: menuRoutes[0].path,
   },
 });
