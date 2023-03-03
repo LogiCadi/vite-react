@@ -1,3 +1,4 @@
+import { css } from "@emotion/css";
 import styled from "@emotion/styled";
 
 const Wrap = styled.div`
@@ -17,8 +18,23 @@ const Link = styled.a`
 export default function Header() {
   return (
     <Wrap>
-      <Link>react</Link>
-      <Link>user</Link>
+      <Link>CMS</Link>
+      <Link>
+        <div
+          className={css`
+            border-radius: 50%;
+            background-color: #000;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          `}
+        >
+          Pro
+        </div>
+      </Link>
     </Wrap>
   );
 }

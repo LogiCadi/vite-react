@@ -14,6 +14,7 @@ const Center = styled.div`
 `;
 const Main = styled.div`
   flex: 1;
+  background-color: #f3f4f7;
 `;
 
 export default function Layout() {

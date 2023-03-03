@@ -4,6 +4,10 @@ export const Wrap = styled.div`
   width: 200px;
   background-color: #1e222d;
   color: #c1c6c8;
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const Li = styled.li<{ active: boolean }>`
