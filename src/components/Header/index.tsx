@@ -18,7 +18,13 @@ const Link = styled.a`
 export default function Header() {
   return (
     <Wrap>
-      <Link>CMS</Link>
+      <Link
+        className={css`
+          font-weight: bold;
+        `}
+      >
+        CMS
+      </Link>
       <Link>
         <div
           className={css`

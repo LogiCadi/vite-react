@@ -1,6 +1,6 @@
 import { atom } from "recoil";
-import B from "../../pages/B";
-import Info from "../../pages/Info";
+import Info from "../../pages/info";
+import List from "../../pages/list";
 
 /** 菜单路径 */
 export const menuRoutes = [
@@ -10,9 +10,9 @@ export const menuRoutes = [
     element: <Info />,
   },
   {
-    name: "B页面",
-    path: "/B",
-    element: <B />,
+    name: "列表",
+    path: "/list",
+    element: <List />,
   },
 ];
 

@@ -1,6 +1,7 @@
 import { css } from "@emotion/css";
 import styled from "@emotion/styled";
 import { atom, useRecoilState } from "recoil";
+import produce from "immer";
 
 /** 通用 标题栏 */
 const ContentTitle = styled.div`
@@ -15,17 +16,24 @@ export const FloatItem = styled.div`
   padding: 12px;
   margin: 12px;
 `;
+export const Link = styled.a`
+  color: #006eff;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 export const infoState = atom({
   key: "infoState",
   default: {
-    name: "Intel 酷睿 i7 12700H",
+    name: "德华",
     group: [
       {
         title: "基本信息",
         value: [
           { label: "适用类型", value: "笔记本" },
-          { label: "CPU系列", value: "酷睿i7 12代系列" },
+          { label: "CPU系列", value: "酷睿i7 12代系列酷睿i7 12代系列酷睿i7 12代系列酷睿i7 12代系列酷睿i7 12代系列" },
           { label: "制作工艺", value: "10纳米" },
         ],
       },
@@ -40,11 +48,22 @@ export const infoState = atom({
   },
 });
 
+export const editState = atom({
+  key: "editState",
+  default: false,
+});
+
 function Info() {
   const [info, setInfo] = useRecoilState(infoState);
+  const [edit, setEdit] = useRecoilState(editState);
+
   return (
     <>
-      <ContentTitle>
+      <ContentTitle
+        className={css`
+          justify-content: space-between;
+        `}
+      >
         <h2
           className={css`
             font-size: 16px;
@@ -53,22 +72,22 @@ function Info() {
         >
           {info.name}
         </h2>
+        <Link onClick={() => setEdit(!edit)}>{edit ? "保存" : "编辑"}</Link>
       </ContentTitle>
-      {info.group.map((g) => (
+      {info.group.map((g, gi) => (
         <FloatItem>
           <div
             className={css`
               font-weight: bold;
-              margin-bottom: 12px;
             `}
           >
             {g.title}
           </div>
-          {g.value.map((v) => (
+          {g.value.map((v, vi) => (
             <div
               className={css`
                 display: flex;
-                margin-top: 8px;
+                margin-top: 12px;
                 font-size: 12px;
               `}
             >
@@ -80,7 +99,26 @@ function Info() {
               >
                 {v.label}
               </div>
-              <div>{v.value}</div>
+              <div
+                className={css`
+                  flex: 1;
+                `}
+              >
+                {edit ? (
+                  <textarea
+                    value={v.value}
+                    onChange={(e) =>
+                      setInfo((prev) =>
+                        produce(prev, (draft) => {
+                          draft.group[gi].value[vi].value = e.target.value;
+                        })
+                      )
+                    }
+                  />
+                ) : (
+                  v.value
+                )}
+              </div>
             </div>
           ))}
         </FloatItem>
