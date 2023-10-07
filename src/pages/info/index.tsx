@@ -4,7 +4,7 @@ import { atom, useRecoilState } from "recoil";
 import produce from "immer";
 
 /** 通用 标题栏 */
-const ContentTitle = styled.div`
+export const ContentTitle = styled.div`
   display: flex;
   align-items: center;
   padding: 12px 18px;
